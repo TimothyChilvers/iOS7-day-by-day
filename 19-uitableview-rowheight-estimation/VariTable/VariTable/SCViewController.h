@@ -17,8 +17,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, SCHeightCalculationType) {
+    SCHeightCalculationSlow,
+    SCHeightCalculationEstimation,
+    SCHeightCalculationEstimationCaching,
+};
+
 @interface SCViewController : UITableViewController
 
-@property (nonatomic, assign) BOOL enableEstimation;
+@property (nonatomic, assign) SCHeightCalculationType heightCalculationType;
 
 @end

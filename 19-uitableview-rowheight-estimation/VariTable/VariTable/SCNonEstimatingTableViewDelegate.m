@@ -35,7 +35,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Height (row %d)", indexPath.row);
-    return _heightBlock(indexPath.row);
+    CGFloat result;
+    for (NSInteger i=0; i < 1e5; i++) {
+        result = sqrt((double)i);
+    }
+    result = (indexPath.row % 3 + 1) * 20.0;
+    return result;
 }
 
 @end

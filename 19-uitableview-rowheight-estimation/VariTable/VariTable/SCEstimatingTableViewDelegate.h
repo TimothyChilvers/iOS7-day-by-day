@@ -20,7 +20,4 @@
 
 @interface SCEstimatingTableViewDelegate : SCNonEstimatingTableViewDelegate
 
-- (instancetype)initWithHeightBlock:(CGFloat (^)(NSUInteger index))heightBlock
-                    estimationBlock:(CGFloat (^)(NSUInteger index))estimationBlock;
-
 @end

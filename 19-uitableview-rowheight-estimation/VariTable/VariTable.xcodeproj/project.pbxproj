@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2287DE1D1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2287DE1C1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.m */; };
 		228DAA6E180AB9B4005241E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228DAA6D180AB9B4005241E7 /* Foundation.framework */; };
 		228DAA70180AB9B4005241E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228DAA6F180AB9B4005241E7 /* CoreGraphics.framework */; };
 		228DAA72180AB9B4005241E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 228DAA71180AB9B4005241E7 /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2287DE1B1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCachingEstimatingTableViewDelegate.h; sourceTree = "<group>"; };
+		2287DE1C1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCachingEstimatingTableViewDelegate.m; sourceTree = "<group>"; };
 		228DAA6A180AB9B4005241E7 /* VariTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VariTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228DAA6D180AB9B4005241E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		228DAA6F180AB9B4005241E7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -174,6 +177,8 @@
 				228DAAAA180ABDA6005241E7 /* SCEstimatingTableViewDelegate.m */,
 				228DAAAD180ABE0C005241E7 /* SCNonEstimatingTableViewDelegate.h */,
 				228DAAAE180ABE0C005241E7 /* SCNonEstimatingTableViewDelegate.m */,
+				2287DE1B1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.h */,
+				2287DE1C1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				228DAA7E180AB9B4005241E7 /* SCAppDelegate.m in Sources */,
 				228DAAAF180ABE0C005241E7 /* SCNonEstimatingTableViewDelegate.m in Sources */,
 				228DAAA8180ABA73005241E7 /* SCViewController.m in Sources */,
+				2287DE1D1906D26F0086A8A3 /* SCCachingEstimatingTableViewDelegate.m in Sources */,
 				228DAA7A180AB9B4005241E7 /* main.m in Sources */,
 				228DAAAB180ABDA6005241E7 /* SCEstimatingTableViewDelegate.m in Sources */,
 			);
@@ -489,6 +495,7 @@
 				228DAAA1180AB9B5005241E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		228DAAA2180AB9B5005241E7 /* Build configuration list for PBXNativeTarget "VariTableTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +504,7 @@
 				228DAAA4180AB9B5005241E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

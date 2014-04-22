@@ -18,6 +18,7 @@
 #import "SCViewController.h"
 #import "SCEstimatingTableViewDelegate.h"
 #import "SCNonEstimatingTableViewDelegate.h"
+#import "SCCachingEstimatingTableViewDelegate.h"
 
 @interface SCViewController () {
     id<UITableViewDelegate> _delegate;
@@ -28,30 +29,24 @@
 
 @implementation SCViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _loadStartTime = [NSDate date];
     
-    if(self.enableEstimation) {
-        _delegate = [[SCEstimatingTableViewDelegate alloc] initWithHeightBlock:^CGFloat(NSUInteger index) {
-            return [self heightForRowAtIndex:index];
-        } estimationBlock:^CGFloat(NSUInteger index) {
-            return 40.0;
-        }];
-    } else {
-        _delegate = [[SCNonEstimatingTableViewDelegate alloc] initWithHeightBlock:^CGFloat(NSUInteger index) {
-            return [self heightForRowAtIndex:index];
-        }];
+    switch (self.heightCalculationType) {
+        case SCHeightCalculationSlow:
+            _delegate = [[SCNonEstimatingTableViewDelegate alloc] init];
+            break;
+        case SCHeightCalculationEstimation:
+            _delegate = [[SCEstimatingTableViewDelegate alloc] init];
+            break;
+        case SCHeightCalculationEstimationCaching:
+            _delegate = [[SCCachingEstimatingTableViewDelegate alloc] initWithNumberOfRows:200];
+            break;
+            
+        default:
+            break;
     }
     self.tableView.delegate = _delegate;
 }
@@ -87,20 +82,12 @@
     
     // Configure the cell...
     cell.textLabel.text = [NSString stringWithFormat:@"Cell %03d", indexPath.row];
-    CGFloat height = [self heightForRowAtIndex:indexPath.row];
+    
+    // Even though this is not legit in real code, we would likely need to call equivalently expensive methods to do layout around about this time anyway. So shut up.
+    CGFloat height = [_delegate tableView:tableView heightForRowAtIndexPath:indexPath];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Height %0.2f", height];
     return cell;
 }
 
-#pragma mark - Utility methods
-- (CGFloat)heightForRowAtIndex:(NSUInteger)index
-{
-    CGFloat result;
-    for (NSInteger i=0; i < 1e5; i++) {
-        result = sqrt((double)i);
-    }
-    result = (index % 3 + 1) * 20.0;
-    return result;
-}
 
 @end

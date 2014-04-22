@@ -17,25 +17,12 @@
 
 #import "SCEstimatingTableViewDelegate.h"
 
-@implementation SCEstimatingTableViewDelegate {
-    CGFloat (^_estimationBlock)(NSUInteger index);
-}
-
-- (instancetype)initWithHeightBlock:(CGFloat (^)(NSUInteger index))heightBlock
-                    estimationBlock:(CGFloat (^)(NSUInteger index))estimationBlock
-{
-    self = [super initWithHeightBlock:heightBlock];
-    if(self) {
-        _estimationBlock = [estimationBlock copy];
-    }
-    return self;
-}
+@implementation SCEstimatingTableViewDelegate
 
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Estimating height (row %d)", indexPath.row);
-    return _estimationBlock(indexPath.row);
+    return 20.f;
 }
 
 @end

@@ -19,6 +19,4 @@
 
 @interface SCNonEstimatingTableViewDelegate : NSObject <UITableViewDelegate>
 
-- (instancetype)initWithHeightBlock:(CGFloat (^)(NSUInteger index))heightBlock;
-
 @end
