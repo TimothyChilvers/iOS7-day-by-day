@@ -18,23 +18,10 @@
 #import "SCNonEstimatingTableViewDelegate.h"
 
 @implementation SCNonEstimatingTableViewDelegate
-{
-    CGFloat (^_heightBlock)(NSUInteger index);
-}
-
-- (instancetype)initWithHeightBlock:(CGFloat (^)(NSUInteger))heightBlock
-{
-    self = [super init];
-    if(self) {
-        _heightBlock = [heightBlock copy];
-    }
-    return self;
-}
 
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Height (row %d)", indexPath.row);
     CGFloat result;
     for (NSInteger i=0; i < 1e5; i++) {
         result = sqrt((double)i);

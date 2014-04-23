@@ -34,12 +34,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSNumber *cachedHeightForRow = [self _cachedHeightForPath:indexPath];
+    NSLog(@"%f",cachedHeightForRow.floatValue);
     if (!cachedHeightForRow) {
         CGFloat calcedHeight = [super tableView:tableView heightForRowAtIndexPath:indexPath];
         cachedHeightForRow = @(calcedHeight);
         self.cachedHeights[indexPath] = cachedHeightForRow;
+        
+        NSUInteger previousAverageTotal = self.totalAveraged;
+        CGFloat previousExpandedAverages = previousAverageTotal * self.currentAverage;
+        
         self.totalAveraged++;
-        self.currentAverage = (self.currentAverage + calcedHeight) / (CGFloat)self.totalAveraged;
+        self.currentAverage = (previousExpandedAverages + calcedHeight) / (CGFloat)self.totalAveraged;
     }
     return cachedHeightForRow.floatValue;
 }
