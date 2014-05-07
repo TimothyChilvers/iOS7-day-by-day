@@ -34,7 +34,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSNumber *cachedHeightForRow = [self _cachedHeightForPath:indexPath];
-    NSLog(@"%f",cachedHeightForRow.floatValue);
     if (!cachedHeightForRow) {
         CGFloat calcedHeight = [super tableView:tableView heightForRowAtIndexPath:indexPath];
         cachedHeightForRow = @(calcedHeight);
