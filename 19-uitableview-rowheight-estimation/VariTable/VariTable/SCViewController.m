@@ -70,20 +70,18 @@
 
     self.topCount = self.topCount + 1;
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    if (self.topCount < 5) {
+    if (self.topCount < 1) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self scrollToBottom];
         });
     } else {
-        NSUInteger currentTab = self.tabBarController.selectedIndex;
-        NSUInteger nextTab = currentTab + 1;
-        if (nextTab < self.tabBarController.viewControllers.count) {
-            [self.tabBarController setSelectedViewController:self.tabBarController.viewControllers[nextTab]];
-        } else {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.heightCalculationType < SCHeightCalculationEstimationCaching) {
+                [self performSegueWithIdentifier:[@(self.heightCalculationType) description] sender:self];
+            } else {
                 exit(0);
-            });
-        }
+            }
+        });
     }
 }
 
@@ -99,6 +97,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if(_loadStartTime) {
         NSDate *finishLoadTime = [NSDate date];
         NSTimeInterval loadDuration = [finishLoadTime timeIntervalSinceDate:_loadStartTime];
