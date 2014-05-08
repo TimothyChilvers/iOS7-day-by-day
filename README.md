@@ -1,4 +1,4 @@
-This repo is a fork of iOS7-day-by-day and is distributed under the same licence. It is not for the same purpose - here lesson 19 was used as a base to investigate how performant iOS7's `[-<UITableViewDelegate> tableView:estimatedHeightForRowAtIndexPath:]` and other speed optimisations around table views could increase performance. 
+This repo is a fork of iOS7-day-by-day and is distributed under the same licence. It is not for the same purpose - here lesson 19 was used as a base to investigate how performance is affected by iOS7's `[-<UITableViewDelegate> tableView:estimatedHeightForRowAtIndexPath:]` and other speed optimisations around table views. 
 
 ###Key differences
 * A new table delegate type that calculates the average calculated height so far to return in estimation. Good for `[-UITableView reloadData]`.
