@@ -25,6 +25,8 @@
     NSDate *_loadStartTime;
 }
 
+@property (nonatomic,assign) NSInteger topCount;
+
 @end
 
 @implementation SCViewController
@@ -64,12 +66,46 @@
     self.tableView.delegate = _delegate;
 }
 
+- (void)scrollToTop {
+
+    self.topCount = self.topCount + 1;
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    if (self.topCount < 5) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scrollToBottom];
+        });
+    } else {
+        NSUInteger currentTab = self.tabBarController.selectedIndex;
+        NSUInteger nextTab = currentTab + 1;
+        if (nextTab < self.tabBarController.viewControllers.count) {
+            [self.tabBarController setSelectedViewController:self.tabBarController.viewControllers[nextTab]];
+        } else {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                exit(0);
+            });
+        }
+    }
+}
+
+- (void)scrollToBottom {
+
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:199 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (self.topCount < 5) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scrollToTop];
+        });
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     if(_loadStartTime) {
         NSDate *finishLoadTime = [NSDate date];
         NSTimeInterval loadDuration = [finishLoadTime timeIntervalSinceDate:_loadStartTime];
         NSLog(@"Total Load Time: %0.2f", loadDuration);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self scrollToBottom];
+        });
     }
     _loadStartTime = nil;
 }
@@ -97,8 +133,8 @@
     cell.textLabel.text = [NSString stringWithFormat:@"Cell %03d", indexPath.row];
     
     // Even though this is not legit in real code, we would likely need to call equivalently expensive methods to do layout around about this time anyway. So shut up.
-    CGFloat height = [_delegate tableView:tableView heightForRowAtIndexPath:indexPath];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Height %0.2f", height];
+//    CGFloat height = [_delegate tableView:tableView heightForRowAtIndexPath:indexPath];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"Height %0.2f", height];
     return cell;
 }
 
