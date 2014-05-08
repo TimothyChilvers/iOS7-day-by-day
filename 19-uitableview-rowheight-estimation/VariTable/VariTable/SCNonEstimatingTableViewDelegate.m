@@ -22,8 +22,8 @@
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat result;
-    for (NSInteger i=0; i < 1e5; i++) {
+    volatile CGFloat result;
+    for (NSInteger i=0; i < 150001; i++) {
         result = sqrt((double)i);
     }
     result = (indexPath.row % 3 + 1) * 20.0;
