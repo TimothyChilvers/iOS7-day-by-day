@@ -22,7 +22,7 @@
 #pragma mark - UITableViewDelegate methods
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 20.f;
+    return 40.f;
 }
 
 @end
