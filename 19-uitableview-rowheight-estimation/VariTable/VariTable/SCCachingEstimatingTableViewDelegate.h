@@ -8,7 +8,7 @@
 
 #import "SCEstimatingTableViewDelegate.h"
 
-@interface SCCachingEstimatingTableViewDelegate : SCEstimatingTableViewDelegate
+@interface SCCachingEstimatingTableViewDelegate : NSObject <UITableViewDelegate>
 
 - (id)initWithNumberOfRows:(NSInteger)numberOfRows;
 

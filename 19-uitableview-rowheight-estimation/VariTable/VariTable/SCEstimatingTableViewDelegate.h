@@ -18,6 +18,6 @@
 #import <Foundation/Foundation.h>
 #import "SCNonEstimatingTableViewDelegate.h"
 
-@interface SCEstimatingTableViewDelegate : SCNonEstimatingTableViewDelegate
+@interface SCEstimatingTableViewDelegate : NSObject <UITableViewDelegate>
 
 @end

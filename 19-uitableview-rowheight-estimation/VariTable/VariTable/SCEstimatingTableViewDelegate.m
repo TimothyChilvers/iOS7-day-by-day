@@ -25,4 +25,14 @@
     return 40.f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    volatile CGFloat result;
+    for (NSInteger i=0; i < 150001; i++) {
+        result = sqrt((double)i);
+    }
+    result = (indexPath.row % 3 + 1) * 20.0;
+    return result;
+}
+
 @end

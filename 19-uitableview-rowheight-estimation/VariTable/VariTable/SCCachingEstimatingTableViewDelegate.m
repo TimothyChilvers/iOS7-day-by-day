@@ -21,7 +21,7 @@
     self = [super init];
     if (self != nil) {
         self.cachedHeights = [NSMutableDictionary dictionaryWithCapacity:numberOfRows];
-        self.currentAverage = 20.f;
+        self.currentAverage = 40.f;
         self.totalAveraged = 1;
     }
     return self;
@@ -35,7 +35,13 @@
     
     NSNumber *cachedHeightForRow = [self _cachedHeightForPath:indexPath];
     if (!cachedHeightForRow) {
-        CGFloat calcedHeight = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+        volatile CGFloat result;
+        for (NSInteger i=0; i < 150001; i++) {
+            result = sqrt((double)i);
+        }
+        result = (indexPath.row % 3 + 1) * 20.0;
+
+        CGFloat calcedHeight = result;
         cachedHeightForRow = @(calcedHeight);
         self.cachedHeights[indexPath] = cachedHeightForRow;
         
